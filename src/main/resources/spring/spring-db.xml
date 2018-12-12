@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 引入properties文件 -->
+    <bean name="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:db.properties</value>
+            </list>
+        </property>
+    </bean>
+    <!-- dbcp2连接池 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="${db.driverClassName}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+        <property name="maxTotal" value="${db.maxTotal}"/>
+        <property name="maxIdle" value="${db.minIdle}"/>
+        <property name="maxWaitMillis" value="${db.maxWaitMillis}"/>
+        <property name="defaultAutoCommit" value="${db.defaultAutoCommit}"/>
+        <property name="validationQuery" value="${db.validationQuery}"/>
+        <property name="testOnBorrow" value="${db.testOnBorrow}"/>
+        <property name="poolPreparedStatements" value="${db.poolPreparedStatements}"/>
+    </bean>
+</beans>
